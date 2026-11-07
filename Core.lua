@@ -3,9 +3,11 @@
 --
 --   1. UI strings: missing keys of Polestar.L (official wins).
 --   2. Guide texts: Polestar.RegisterGuideTexts is wrapped so that when the
---      official (load-on-demand) texts addon registers, our entries merge in
---      (official wins per key). We also register ours directly, which covers
---      the official addon being disabled.
+--      official texts addon registers, our entries merge in (official wins
+--      per key). RegisterGuideTexts replaces the whole table, and Polestar
+--      loads Polestar_zhCN before this addon, so the data files carry a copy
+--      of the official texts too: the direct registration below never loses
+--      anything, whether the official addon is loaded, later, or disabled.
 --   3. Names: Polestar.Names query functions are wrapped; when the official
 --      answer is nil our supplement answers.
 --
@@ -67,7 +69,8 @@ local function hookGuideTexts()
 		if loc == "zhCN" then mergeGuideTexts(t) end
 		return orig(loc, packId, t)
 	end
-	-- The official texts addon may be disabled or never load: register ours.
+	-- RegisterGuideTexts replaces texts["guides"], so this must be a complete
+	-- table (E.* already holds the official texts as well as our additions).
 	orig("zhCN", "guides", { pack = E.pack, guides = E.guides })
 end
 

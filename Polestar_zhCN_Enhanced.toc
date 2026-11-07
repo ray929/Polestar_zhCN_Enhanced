@@ -1,0 +1,16 @@
+## Interface: 16001
+## Title: Polestar - 简体中文增强
+## Notes: 在不修改 Polestar 及官方 Polestar_zhCN 的前提下，补充官方未覆盖的简体中文文本（界面字符串、指南文本、任务/NPC/物品等名称）。官方翻译优先，本插件只补缺。
+## Author: Polestar_zhCN_Enhanced
+## Version: 0.1.0
+## Category: Polestar
+## Group: Polestar
+## Dependencies: Polestar
+## X-License: GPL-3.0-only
+
+Core.lua
+Data_UI.lua
+Data_Names.lua
+Data_Texts_Shared.lua
+Data_Texts_Alliance.lua
+Data_Texts_Horde.lua

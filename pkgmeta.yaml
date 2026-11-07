@@ -1,0 +1,5 @@
+package-as: Polestar_zhCN_Enhanced
+enable-nolib-creation: no
+ignore:
+  - .gitignore
+  - README.md

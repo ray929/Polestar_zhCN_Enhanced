@@ -3,4 +3,3 @@ enable-nolib-creation: no
 ignore:
   - .gitignore
   - README.md
-  - AGENTS.md

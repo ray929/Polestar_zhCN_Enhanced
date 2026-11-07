@@ -1,0 +1,9 @@
+# tooling / editor scratch
+.trae
+.vscode
+.codebuddy
+.workbuddy
+.temp
+.test
+__pycache__/
+*.pyc

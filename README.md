@@ -73,28 +73,6 @@ Interface text:
 
 Placeholders are kept intact, so nothing breaks: `{npc:…}` and `{item:…}` are filled from the name tables (official pack plus this addon), `{area:…}`, `{zone:…}` and `{spell:…}` from your client, and `%d` / `%s` by whatever prints the string.
 
-## Installation
-
-1. Install Polestar (required).
-2. Install `Polestar_zhCN` (recommended — it carries the bulk of the name tables).
-3. Unzip this folder into `World of Warcraft/_retail_/Interface/AddOns/`, so that `Polestar_zhCN_Enhanced.toc` sits inside `Interface/AddOns/Polestar_zhCN_Enhanced/`.
-4. Play on a Chinese (Simplified) client. On other locales the addon does nothing and loads no data.
-
-No configuration, no slash commands, no saved variables. At login it prints one line:
-
-> Polestar 简体中文增强：254 个指南译文，重译 N 篇指南。
-
-The first number is how many guide text tables are registered. The second is how many already-prepared guides were re-rendered at login, which depends on what your client had loaded beforehand. Guides prepared before this addon loaded are re-rendered immediately, so you do not need to reopen the guide window or `/reload`.
-
-## How it stays out of the way
-
-- **The official pack always wins per string.** Both sides are merged by key; a string that `Polestar_zhCN` already has is never overwritten.
-- **Guide texts work without `Polestar_zhCN`.** The data files carry the official translations too, because Polestar's `RegisterGuideTexts` replaces the whole text table instead of merging into it. Uninstall or disable the official pack and the guides still read fully in Chinese. Names are the exception: the 341 entries here are a supplement, the bulk of the name tables still comes from the official pack.
-- **No saved variables, no network, no configuration, nothing written to disk.**
-- **No combat or secure-code hooks.** It merges two tables at load and wraps `Polestar.RegisterGuideTexts` plus the `Polestar.Names` lookup functions, so a lookup the official pack answers is passed through untouched.
-- **Does not touch other locales.** Everything is gated on `GetLocale() == "zhCN"`.
-- **Nothing in Polestar or `Polestar_zhCN` is edited.** Uninstalling this addon returns the game to exactly how it was.
-
 ## Known gaps
 
 - **45 interface strings are still English** — the Dalaran gate, the Shortest Path Forever integration, gamepad browsing, talent plans, the report page, transport countdowns and party tracking. Polestar's `zhCN.lua` has them commented out; they are not translated yet.
@@ -181,28 +159,6 @@ Polestar 自带 `Locales/zhCN.lua`，里面 302 个键是以注释形式留空�
 > Bags nearly full: %d slots left. → 背包快满了：只剩 %d 格。
 
 占位符一律原样保留，所以不会出问题：`{npc:…}` 与 `{item:…}` 仍从名称表（官方包加本插件）取名，`{area:…}`、`{zone:…}`、`{spell:…}` 由你的客户端给出，`%d` 与 `%s` 由显示这条文字的那段代码填入。
-
-## 安装
-
-1. 先装 Polestar（必需）。
-2. 建议同时装 `Polestar_zhCN`，名称表的大头在它那里。
-3. 把本目录解压到 `World of Warcraft/_retail_/Interface/AddOns/`，确认 `Polestar_zhCN_Enhanced.toc` 位于 `Interface/AddOns/Polestar_zhCN_Enhanced/` 内。
-4. 用简体中文客户端进游戏。其他语言的客户端上插件什么都不做，也不加载数据。
-
-不需要任何设置，没有斜杠命令，不写存档。登录时会打一行字：
-
-> Polestar 简体中文增强：254 个指南译文，重译 N 篇指南。
-
-前一个数字是注册进去的指南条目数，后一个是登录时重译的篇数——本插件加载前已经准备好的指南会被重译，具体篇数取决于进游戏时客户端已经加载了什么。重译当场生效，不用重开指南窗口，也不用 `/reload`。
-
-## 它是怎么做到不干扰的
-
-- **同一文本永远以官方为准。** 两边按 key 合并，`Polestar_zhCN` 已经有的条目绝不会被覆盖。
-- **没有官方包，指南正文照样是中文。** Polestar 的 `RegisterGuideTexts` 是整表替换而不是合并，所以数据文件里连官方译文也带了一份。禁用官方包，指南仍是完整中文。名称是例外：这里的 341 条只是补缺，名称表的主体仍来自官方包。
-- **不写存档、不联网、没有设置项、不落盘。**
-- **不挂战斗或受保护代码。** 只在加载时合并两张表，并包装 `Polestar.RegisterGuideTexts` 与 `Polestar.Names` 的查询函数；官方能查到的结果原样返回。
-- **不影响其他语言。** 所有逻辑都在 `GetLocale() == "zhCN"` 之后。
-- **不改 Polestar 与 `Polestar_zhCN` 的任何文件。** 删掉本插件，游戏恢复原样。
 
 ## 尚未覆盖
 

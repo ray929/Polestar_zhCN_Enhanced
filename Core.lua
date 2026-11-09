@@ -37,6 +37,9 @@ end
 
 E.compatible = tocField(ADDON, "X-Compatible-Polestar")
 E.upstream = tocField("Polestar", "Version")
+E.build = tocField(ADDON, "X-Build-Version")
+-- A source checkout still has the unreplaced @project-version@ marker.
+if E.build and E.build:find("@", 1, true) then E.build = nil end
 E.enabled = type(E.compatible) == "string" and type(E.upstream) == "string"
 	and E.upstream == E.compatible
 
@@ -187,8 +190,8 @@ report:RegisterEvent("PLAYER_LOGIN")
 report:SetScript("OnEvent", function(self)
 	self:UnregisterAllEvents()
 	if not E.enabled then
-		print(("|cffff9955Polestar 简体中文增强|r：Polestar 已更新到 %s，本插件正在适配中，暂时不加载，请等待更新。官方简体中文不受影响。"):format(
-			tostring(E.upstream or "新版本")))
+		print(("Polestar 已更新到 |cffffd100%s|r，|cff33ff99中文汉化加强包|r目前为|cffffd100%s|r版本，请查看插件更新器或者等待更新。期间会回落到官方原版汉化，不影响正常使用。"):format(
+			tostring(E.upstream or "新版本"), tostring(E.build or "未知版本")))
 		return
 	end
 	-- Second chance: Polestar's API was not there when this addon loaded.

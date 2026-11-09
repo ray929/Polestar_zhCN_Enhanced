@@ -8,48 +8,46 @@ It does not replace or modify Polestar or `Polestar_zhCN`. It registers the miss
 
 ## What the official Chinese pack leaves in English
 
-Measured against `Polestar_zhCN` 0.3.4 (Polestar Interface 16001):
+Measured against Polestar / `Polestar_zhCN` 0.3.5 (Polestar Interface 16001):
 
 | Content | Official `Polestar_zhCN` | With this addon |
 | --- | --- | --- |
-| Guides with Chinese text | 208 of 254 | 254 of 254 |
-| Guide text strings | 3,394 | 11,297 (all of them) |
-| Game names (quest / NPC / object / item) | everything except 341 ids | complete |
-| Polestar interface strings | 2,430 keys | +258 translated (261 keys covered) |
+| Guides with Chinese text | 250 of 260 | 260 of 260 |
+| Guide text strings | 2,880 | 11,726 (all of them) |
+| Game names (quest / NPC / object / item) | everything except 365 ids | complete |
+| Polestar interface strings | 2,680 of the 2,693 keys the UI uses | all 2,693 |
 
-That gap is what you feel while leveling: in a guide the official pack has half translated, step 4 is Chinese, step 5 is English, and the NPC name inside step 6 falls back to English because the name table lacks that one id. This addon closes the gap instead of leaving guides half done.
+The official pack touches 250 guides but finishes none of them: it translates 2,880 strings out of 11,726, scattered across almost every guide. That gap is what you feel while leveling: step 4 is Chinese, step 5 is English, and the NPC name inside step 6 falls back to English because the name table lacks that one id. This addon closes the gap instead of leaving guides half done.
 
 ## What you get
 
-### 1. Guide texts — 7,891 new strings across 254 guides
+### 1. Guide texts — 8,757 new strings across 260 guides
 
-Every guide that ships with the Polestar guide packs now reads fully in Chinese, including 46 guides the official pack has no translation for at all:
+Every guide that ships with the Polestar guide packs now reads fully in Chinese, including the 10 guides the official pack has no translation for at all:
 
-- **23 class quest guides** — hunter taming chains (Alliance and Horde), warlock demon quests (imp, voidwalker, incubus), shaman totem quests (Call of Earth, Call of Fire), paladin Tome of Divinity, priest robes, Desperate Prayer and Chastise, Touch of Weakness and Dark Sacrifice, mage teleports and Staff or Orb, Atiesh, warrior Quel'Serrar.
-- **11 reputation guides** — Bloodsail Buccaneers, Brood of Nozdormu, Steamwheedle Cartel, Zandalar Tribe, Ravenholdt, Nightclaw Druids, Darkspear Islands, Centaur Clans, Kirin Tor, Wintersaber Trainers, Merchant's Favor. These are the longest of all: Steamwheedle alone is 88 strings, Brood of Nozdormu 112.
-- **9 collectible guides** — pets such as Bitter Baitling, Weevil K'neevil, Disgusting Oozeling, Black Tabby.
-- **2 leveling guides** — Silithus 50-60 (Alliance) and Darkshore (Night Elf start).
+- **1 class guide** — the mage's Atiesh chain (18 strings).
+- **9 small-pet collectible guides** — Baby Crocolisk, Bitter Baitling, Black Tabby, Condor Hatchling, Excitable Slime, Green Wing Macaw, Spectral Bear Cub, Tallstrider Hatchling, Weevil K'neevil (61 strings together).
 
-The rest is filling gaps inside guides the official pack translated only partly: 29 Alliance leveling guides, 28 Horde leveling guides, 58 class quest guides, 55 mount and pet guides, 16 reputation guides, 12 profession guides, 7 exploration guides, 2 miscellaneous guides and 1 legacy guide.
+The rest is filling gaps inside guides the official pack translated only partly: leveling routes for both factions, class quest chains, mount and pet guides, reputation grinds, profession guides, exploration and miscellaneous guides. A full re-check against the 0.3.5 guide packs covers 11,637 per-guide strings plus 17 pack-level folder names, with zero missing keys and zero placeholder mismatches.
 
-### 2. Game names — 341 ids the name table was missing
+### 2. Game names — the 365 ids the name table was missing
 
 | Kind | Ids |
 | --- | --- |
-| NPCs | 147 |
-| Quests | 137 |
-| Objects | 52 |
-| Items | 5 |
+| NPCs | 156 |
+| Quests | 143 |
+| Objects | 58 |
+| Items | 8 |
 
-Guide steps are stored in English with placeholders like `{npc:1231}` and `{item:6284}`; Polestar resolves them to a name when it draws the step. When the name table has no entry for an id, that name comes out in English in the middle of an otherwise Chinese sentence. These 341 entries fix that.
+Guide steps are stored in English with placeholders like `{npc:1231}` and `{item:6284}`; Polestar resolves them to a name when it draws the step. When the name table has no entry for an id, that name comes out in English in the middle of an otherwise Chinese sentence. These 365 entries fix that. Names follow the official Simplified Chinese client wherever an official name exists (for example 巡山人 for "Mountaineer", 焚化者加因姆 for "Incinerator Gar'im", 瓦伦妮亚·风暴之拳 for "Valennia Stormfist"); only ids with no official name are transliterated.
 
-### 3. Interface strings — 258 new translations
+### 3. Interface strings — every gap closed
 
-Polestar ships its own `Locales/zhCN.lua`, where 302 keys are left as comments, which means English on screen. This addon covers 261 of them: 257 of those commented-out keys, plus 4 the file does not contain at all. Three are pure format strings such as `%.1f MB` and pass through unchanged, so 258 are actual translations. Affected screens:
+Polestar's `Locales/zhCN.lua` defines 2,748 keys. Of the 2,693 keys the UI actually references, 2,680 are defined and 13 are not — this addon supplies all 13, including the 0.3.5 "Dynamic Questing" options (suggestions, sound, spawn-area distance and the "While you're here" panel). It also carries 283 UI keys as a fallback; official values always win, so these only take effect when the official pack is missing or older. Seven of them are pure format strings that pass through unchanged, leaving 276 real translations.
 
-- Options pages: arrow behaviour, restock amounts, junk and keep marks, class quest chime, icon packs, Characters page.
-- Guide window: step tooltips, "3 quests to pick up", "1.2k left", rested XP, bag space warnings, travel and hearthstone advice.
-- Merchant and bag interaction: Restock button, "Don't sell: the guide needs it at step %d", junk marks.
+### 4. A version guard instead of a broken install
+
+Guide texts are registered as a whole table: running translations made for an older Polestar against a newer guide set would put stale strings in the official pack's place. If the installed Polestar version does not match the version this pack was adapted for, the addon stays completely off — no hooks, no text replacement — and prints one line in chat asking you to check your addon updater or wait for the matching release. The official Chinese pack keeps working normally in the meantime.
 
 ## What it looks like in game
 
@@ -61,7 +59,7 @@ The same step here:
 
 > 10级时{npc:3294}让你去找{npc:5875}。他站在{area:362}兵营的后门外，兵营是镇子东侧的大建筑（不是旅店），离术士训练师{npc:3172}只有几步。
 
-A reputation guide that the official pack does not cover at all, before and after:
+A reputation guide that the official pack barely covers, before and after:
 
 > Defias Pillagers and Looters hold the farms west of {area:108}, between the coast road and {area:20}. Careful: The {area:113} cave holds many Defias packed together, so it is easy to pull several at once there.
 
@@ -75,9 +73,9 @@ Placeholders are kept intact, so nothing breaks: `{npc:…}` and `{item:…}` ar
 
 ## Known gaps
 
-- **45 interface strings are still English** — the Dalaran gate, the Shortest Path Forever integration, gamepad browsing, talent plans, the report page, transport countdowns and party tracking. Polestar's `zhCN.lua` has them commented out; they are not translated yet.
 - **Area, zone, spell and skill names come from the game client**, not from this addon, so they follow your client language. Only quest, NPC, object and item names are supplemented here.
-- **New Polestar versions can add new guides and strings.** If a guide appears in English after a Polestar update, this addon has not caught up with it yet.
+- **Some locale keys remain commented out** in Polestar's `zhCN.lua`, but the current UI does not reference them. If a future version starts using one, it will show in English until this addon catches up.
+- **New Polestar versions can add new guides and strings.** The version guard above keeps this pack from loading stale translations; the official Chinese pack stays usable while a matching update is prepared.
 
 ## Credits and licence
 
@@ -95,48 +93,46 @@ Polestar 的练级指南原文是英文。官方 `Polestar_zhCN` 译了一部分
 
 ## 官方中文包没译的部分
 
-以 `Polestar_zhCN` 0.3.4（Polestar 接口 16001）实际核对：
+以 Polestar / `Polestar_zhCN` 0.3.5（接口 16001）实际核对：
 
 | 内容 | 只有官方 `Polestar_zhCN` | 加上本插件 |
 | --- | --- | --- |
-| 有中文的指南 | 254 篇里的 208 篇 | 254 篇全部 |
-| 指南正文条目 | 3,394 条 | 11,297 条（全部） |
-| 游戏名称（任务／NPC／物体／物品） | 除 341 个 id 之外 | 完整 |
-| Polestar 界面文字 | 2,430 键 | 再补 258 条译文（覆盖 261 键） |
+| 有中文的指南 | 260 篇里的 250 篇 | 260 篇全部 |
+| 指南正文条目 | 2,880 条 | 11,726 条（全部） |
+| 游戏名称（任务／NPC／物体／物品） | 除 365 个 id 之外 | 完整 |
+| Polestar 界面文字 | 界面用到的 2,693 键里译了 2,680 键 | 2,693 键全部 |
 
-这个缺口在练级时是能直接感觉到的：一篇译了六成的指南，第 4 步是中文、第 5 步是英文，第 6 步里的 NPC 名字因为名称表没有那个 id 又变回英文。本插件做的是把缺口填掉，而不是留一篇译到一半的指南。
+官方包触及了 250 篇指南，却没有一篇译完：11,726 条正文里只译了 2,880 条，散落在几乎所有指南里。这个缺口在练级时是能直接感觉到的：第 4 步是中文、第 5 步是英文，第 6 步里的 NPC 名字因为名称表没有那个 id 又变回英文。本插件做的是把缺口填掉，而不是留一篇译到一半的指南。
 
 ## 具体补了什么
 
-### 一、指南正文：254 篇指南，新增 7,891 条
+### 一、指南正文：260 篇指南，新增 8,757 条
 
-Polestar 指南包里的每一篇现在都是完整中文，其中 46 篇官方包完全没有译文：
+Polestar 指南包里的每一篇现在都是完整中文，其中 10 篇官方包完全没有译文：
 
-- **23 篇职业任务指南**：猎人驯服链（联盟与部落）、术士的恶魔任务（小鬼、虚空行者、魅魔）、萨满的图腾任务（土图腾、火图腾）、圣骑士《神圣之书》（Tome of Divinity）、牧师长袍与绝望祷言／责罚、虚弱之触与黑暗祭献、法师传送与法杖或法球、埃提耶什、战士的奎尔塞拉。
-- **11 篇声望指南**：血帆海盗、诺兹多姆的子嗣、热砂港财团、赞达拉部族、暗矛群岛、拉文霍特、夜爪德鲁伊、肯瑞托、商人的恩惠等。这些也是最长的一批：热砂港财团 88 条，诺兹多姆的子嗣 112 条。
-- **9 篇小宠物收集指南**。
-- **2 篇升级指南**：希利苏斯 50-60（联盟）、黑海岸（暗夜精灵开局）。
+- **1 篇职业指南**：法师的埃提耶什任务链（18 条）。
+- **9 篇小宠物收集指南**：小鳄鱼、苦味饵料、黑纹灰猫、秃鹫雏鸟、兴奋的软泥怪、绿翼鹦鹉、幽灵熊崽、陆行鸟雏鸟、韦维尔·克尼维尔（合计 61 条）。
 
-其余是给官方译过、但仍有缺口的指南补齐：联盟升级 29 篇、部落升级 28 篇、职业任务 58 篇、坐骑与宠物 55 篇、声望 16 篇、专业 12 篇、探索 7 篇、杂项 2 篇、传承 1 篇。
+其余是给官方译过、但仍有缺口的指南补齐：双方阵营的升级路线、职业任务链、坐骑与宠物、声望、专业、探索与杂项指南。按 0.3.5 指南包全量复核：11,637 条指南正文加 17 个包级目录名，缺键 0、占位符不匹配 0。
 
-### 二、游戏名称：补 341 个 id
+### 二、游戏名称：补 365 个 id
 
 | 类别 | 数量 |
 | --- | --- |
-| NPC | 147 |
-| 任务 | 137 |
-| 物体 | 52 |
-| 物品 | 5 |
+| NPC | 156 |
+| 任务 | 143 |
+| 物体 | 58 |
+| 物品 | 8 |
 
-指南正文里存的是 `{npc:1231}`、`{item:6284}` 这样的占位符，绘制那一步时才去名称表取名字。名称表里没有这个 id，一句中文里就会夹进一个英文名。这 341 条就是补这些洞的。
+指南正文里存的是 `{npc:1231}`、`{item:6284}` 这样的占位符，绘制那一步时才去名称表取名字。名称表里没有这个 id，一句中文里就会夹进一个英文名。这 365 条就是补这些洞的。凡有官方译名的一律照用（例如 Mountaineer 用「巡山人」、Incinerator Gar'im 用「焚化者加因姆」、Valennia Stormfist 用「瓦伦妮亚·风暴之拳」），只有确实没有官方名的 id 才音译或意译。
 
-### 三、界面文字：258 条新增译文
+### 三、界面文字：缺口全部补上
 
-Polestar 自带 `Locales/zhCN.lua`，里面 302 个键是以注释形式留空的，也就是说界面上显示英文。本插件覆盖其中 261 条：257 条是那些被注释掉的键，另有 4 条原文件里根本没有。这 261 条里有 3 条是纯格式串（如 `%.1f MB`），照原样搬过去，所以实际新增译文 258 条。涉及的界面：
+Polestar 的 `Locales/zhCN.lua` 定义了 2,748 个键。界面实际引用的 2,693 个键里，官方定义了 2,680 个，还差 13 个——本插件全部补上，其中包括 0.3.5 新增的「动态任务」选项（建议、提示音、刷新区域距离、「顺便完成」面板）。此外还保留了 283 个界面键作为兜底；官方值始终优先，所以只有在官方包缺失或版本较旧时才会生效。其中 7 条是纯格式串，照原样通过，实际译文 276 条。
 
-- 选项页：箭头走法、补货数量、垃圾与保留标记、职业任务提示音、图标包、角色页面。
-- 指南窗口：步骤提示、可接任务数、“还差 1.2k”、精力充沛、背包空格提醒、炉石与行程建议。
-- 商人与背包操作：补货按钮、“别卖：指南第 12 步需要它”、垃圾标记。
+### 四、版本守卫，而不是装坏的包
+
+指南译文是整表注册的：把为旧版 Polestar 做的译文套到新版指南上，会用陈旧文本顶掉官方包的位置。若已安装的 Polestar 版本与本插件适配的版本不一致，本插件会完全不加载——不注册任何 hook、不替换任何文本——只在聊天框打印一行提示，让你查看插件更新器或等待适配版本。期间官方简体中文包照常工作，不影响使用。
 
 ## 在游戏里是什么样
 
@@ -148,7 +144,7 @@ Polestar 自带 `Locales/zhCN.lua`，里面 302 个键是以注释形式留空�
 
 > 10级时{npc:3294}让你去找{npc:5875}。他站在{area:362}兵营的后门外，兵营是镇子东侧的大建筑（不是旅店），离术士训练师{npc:3172}只有几步。
 
-官方包完全没覆盖的声望指南：
+官方包几乎没覆盖的指南：
 
 > Defias Pillagers and Looters hold the farms west of {area:108}, between the coast road and {area:20}. Careful: The {area:113} cave holds many Defias packed together, so it is easy to pull several at once there.
 
@@ -162,9 +158,9 @@ Polestar 自带 `Locales/zhCN.lua`，里面 302 个键是以注释形式留空�
 
 ## 尚未覆盖
 
-- **45 条界面文字仍是英文**：达拉然城门、与 Shortest Path Forever 的整合、手柄浏览、天赋方案、问题反馈页、交通工具倒计时、小队追踪。这些在 Polestar 的 `zhCN.lua` 里是注释状态，本插件还没译。
 - **区域、地名、法术、技能名来自游戏客户端**，不由本插件提供，跟着你的客户端语言走。这里只补任务、NPC、物体、物品名。
-- **Polestar 更新会带来新的指南和文本。** 更新后若有指南又变回英文，说明本插件还没跟上那一版。
+- **Polestar 的 zhCN.lua 里还有若干被注释掉的键**，但当前界面并未引用它们；若以后的版本开始使用，在适配前会显示英文。
+- **Polestar 更新会带来新的指南和文本。** 上面的版本守卫会阻止本插件加载过期译文，等待适配期间官方中文包仍可正常使用。
 
 ## 致谢与许可
 

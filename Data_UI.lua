@@ -286,3 +286,14 @@ T["Your route takes you there at %s."] = "你的路线会在 %s 带你去那里�
 T["still open"] = "未完成"
 T["the dungeon"] = "该地下城"
 T["your next stop"] = "你的下一站"
+
+-- 0.3.5: Dynamic Questing (the "While you're here" panel)
+T["%s %s"] = "%s %s"
+T[", "] = "，"
+T["Dynamic Questing"] = "动态任务"
+T["How near its spawn area must be for a suggestion to show. It goes again a little further out."] = "刷新区域要多近才显示建议。走远一些后它会消失。"
+T["Right-click: not now, around here (twice: for the rest of this zone)."] = "右键：这一带暂不提示（连点两次：本地区内不再提示）。"
+T["Sound for a new suggestion"] = "新建议提示音"
+T["A soft chime for each new suggestion (once when several come together), at the game's sound effects volume."] = "每出现一条新建议播放一次轻柔提示音（同时出现多条只响一次），使用游戏的音效音量。"
+T["Suggests objectives from later steps when you are near them, from your quest log and what is around you. They show under the step in a \"While you're here\" panel: click one to point the arrow there; right-click to dismiss it around here (dismissed twice, it stays away for the zone)."] = "靠近后续步骤的目标时，会从你的任务日志和周围环境中给出建议。它们显示在步骤下方的「顺便完成」面板里：点击一条可让箭头指向那里；右键表示这一带暂不需要（连续两次后本地区不再提示）。"
+T["While here: %s"] = "顺便完成：%s"

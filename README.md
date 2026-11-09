@@ -1,5 +1,9 @@
 # Polestar_zhCN_Enhanced — Simplified Chinese text pack for Polestar
 
+**本插件是 Polestar 的汉化增强包，必须先安装原版 Polestar 才能使用。**
+
+**This is a localization add-on for Polestar. The original Polestar add-on must be installed first.**
+
 Polestar's leveling guides are written in English. The official `Polestar_zhCN` pack translates part of them into Chinese, and this addon translates the rest.
 
 It does not replace or modify Polestar or `Polestar_zhCN`. It registers the missing texts and lets the official ones win wherever both sides have the same string, so you can run both side by side.

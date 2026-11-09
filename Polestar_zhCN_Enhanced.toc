@@ -2,12 +2,14 @@
 ## Title: Polestar - 简体中文增强
 ## Notes: 补充官方未覆盖的简体中文文本
 ## Author: ray929
-## Version: @project-version@
+## Version:
+## X-Build-Version: @project-version@
 ## Category: Polestar
 ## Group: Polestar
 ## Dependencies: Polestar
 ## X-License: GPL-3.0-only
 ## X-Curse-Project-ID: 1789473
+## X-Compatible-Polestar: 0.3.4
 
 Core.lua
 Data_UI.lua

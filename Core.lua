@@ -22,6 +22,24 @@ local ADDON, E = ...
 if not (GetLocale and GetLocale() == "zhCN") then return end
 if type(Polestar) ~= "table" then return end
 
+-- These translations were made for one Polestar release. RegisterGuideTexts
+-- replaces texts["guides"] wholesale, so running them against a newer guide
+-- set would push stale strings into the official pack's place. Stay silent
+-- instead and tell the player to wait for a matching update.
+local function tocField(addon, field)
+	local get = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
+	if type(get) ~= "function" then return nil end
+	local ok, value = pcall(get, addon, field)
+	if not ok or type(value) ~= "string" then return nil end
+	value = value:match("^%s*(.-)%s*$")
+	return value ~= "" and value or nil
+end
+
+E.compatible = tocField(ADDON, "X-Compatible-Polestar")
+E.upstream = tocField("Polestar", "Version")
+E.enabled = type(E.compatible) == "string" and type(E.upstream) == "string"
+	and E.upstream == E.compatible
+
 E.ui = E.ui or {}          -- [english] = 中文（Polestar.L 缺的键）
 E.pack = E.pack or {}      -- 包级文本（RegisterGuideTexts 的 t.pack）
 E.guides = E.guides or {}  -- [guideId] = { [english] = 中文 }
@@ -144,7 +162,7 @@ end
 -- addon is parsed in one go, and the guides a pack registered before it are
 -- re-rendered right away; every later registration reads these texts itself.
 function E.Apply()
-	if E.wired then return end
+	if not E.enabled or E.wired then return end
 	fillUI()
 	hookGuideTexts()
 	hookNames()
@@ -154,7 +172,7 @@ end
 -- right around login (a saved tab, another faction), and a pack that was
 -- hidden while Apply ran only shows up now.
 function E.Refresh()
-	if not E.wired then return end
+	if not E.enabled or not E.wired then return end
 	E.refreshed = (E.refreshed or 0) + refreshGuides()
 end
 
@@ -168,6 +186,11 @@ local report = CreateFrame("Frame")
 report:RegisterEvent("PLAYER_LOGIN")
 report:SetScript("OnEvent", function(self)
 	self:UnregisterAllEvents()
+	if not E.enabled then
+		print(("|cffff9955Polestar 简体中文增强|r：Polestar 已更新到 %s，本插件正在适配中，暂时不加载，请等待更新。官方简体中文不受影响。"):format(
+			tostring(E.upstream or "新版本")))
+		return
+	end
 	-- Second chance: Polestar's API was not there when this addon loaded.
 	E.Apply()
 	E.Refresh()

@@ -5,6 +5,7 @@
 
 local _, E = ...
 if not (GetLocale and GetLocale() == "zhCN") then return end
+if not E.enabled then return end
 
 local T = E.ui
 

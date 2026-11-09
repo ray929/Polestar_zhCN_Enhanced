@@ -4,6 +4,7 @@
 
 local _, E = ...
 if not (GetLocale and GetLocale() == "zhCN") then return end
+if not E.enabled then return end
 
 E.names.item = {
 	[206170] = "风怒松果",

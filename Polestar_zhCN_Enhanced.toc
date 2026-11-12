@@ -9,7 +9,7 @@
 ## Dependencies: Polestar
 ## X-License: GPL-3.0-only
 ## X-Curse-Project-ID: 1789473
-## X-Compatible-Polestar: 0.3.6
+## X-Compatible-Polestar: 0.3.7
 
 Core.lua
 Data_UI.lua

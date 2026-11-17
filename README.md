@@ -44,11 +44,11 @@ Guide steps are stored in English with placeholders like `{npc:1231}` and `{item
 
 ### 3. Interface strings — every gap closed
 
-In 0.3.7.2 `Polestar_zhCN/Interface.lua` defines 3,064 keys (102 more are commented out). Of the 3,002 keys the UI actually references, the official pack defines 2,995; the seven remaining keys are supplied here. This addon also carries 284 UI keys as a fallback; official values always win, so these only take effect when the official pack is missing or older.
+In 0.4.0.1 `Polestar_zhCN/Interface.lua` defines 4,325 keys (203 more are commented out). The official pack covers nearly every key the UI references, and anything it lacks is supplied here. This addon also carries 284 UI keys as a fallback; official values always win, so these only take effect when the official pack is missing or older.
 
 ### 4. A version guard instead of a broken install
 
-Guide texts are registered as a whole table: running translations made for an older Polestar against a newer guide set would put stale strings in the official pack's place. If the installed Polestar version does not match the version this pack was adapted for (currently 0.3.7.2), the addon stays completely off — no hooks, no text replacement — and prints one line in chat asking you to check your addon updater or wait for the matching release. The official Chinese pack keeps working normally in the meantime.
+Guide texts are registered as a whole table: running translations made for an older Polestar against a newer guide set would put stale strings in the official pack's place. If the installed Polestar version does not match the version this pack was adapted for (currently 0.4.0.1), the addon stays completely off — no hooks, no text replacement — and prints one line in chat asking you to check your addon updater or wait for the matching release. The official Chinese pack keeps working normally in the meantime.
 
 ## What it looks like in game
 

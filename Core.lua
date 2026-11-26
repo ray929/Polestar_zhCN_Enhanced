@@ -20,7 +20,30 @@
 local ADDON, E = ...
 
 if not (GetLocale and GetLocale() == "zhCN") then return end
-if type(Polestar) ~= "table" then return end
+
+local function printLine(text)
+	print("|cff33ff99Polestar 简体中文增强|r：" .. text)
+end
+
+local function addonLoaded(name)
+	local fn = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+	if type(fn) ~= "function" then return nil end
+	local ok, loaded = pcall(fn, name)
+	return ok and loaded or nil
+end
+
+-- Without Polestar there is nothing to enhance: say so once, and point the
+-- player at the official addon and its full Chinese pack instead of staying
+-- silent (a silent addon looks broken).
+if type(Polestar) ~= "table" then
+	local hint = CreateFrame("Frame")
+	hint:RegisterEvent("PLAYER_LOGIN")
+	hint:SetScript("OnEvent", function(self)
+		self:UnregisterAllEvents()
+		printLine("未检测到 Polestar。请安装 Polestar 官方版和官方中文包 Polestar_zhCN；本插件只补充官方未覆盖的译文。")
+	end)
+	return
+end
 
 -- These translations were made for one Polestar release. RegisterGuideTexts
 -- replaces texts["guides"] wholesale, so running them against a newer guide
@@ -204,6 +227,11 @@ report:SetScript("OnEvent", function(self)
 	for _ in pairs(E.guides) do n = n + 1 end
 	if E.wired then
 		print(("|cff33ff99Polestar 简体中文增强|r：%d 个指南译文，重译 %d 篇指南。"):format(n, E.refreshed or 0))
+		-- Recommend the official stack when its Chinese pack is absent: ours is
+		-- a supplement and only keeps up with releases after each sync.
+		if addonLoaded("Polestar_zhCN") == false then
+			printLine("未检测到官方中文包 Polestar_zhCN，建议安装 Polestar 官方版与中文包，以获得最新完整译文。")
+		end
 	else
 		print(("|cffff5555Polestar 简体中文增强|r：译文未注册（Polestar.RegisterGuideTexts 不可用）。"))
 	end

@@ -25,12 +25,7 @@ local function printLine(text)
 	print("|cff33ff99Polestar 简体中文增强|r：" .. text)
 end
 
-local function addonLoaded(name)
-	local fn = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
-	if type(fn) ~= "function" then return nil end
-	local ok, loaded = pcall(fn, name)
-	return ok and loaded or nil
-end
+local MIGRATE = "建议迁移到 Polestar 中文完整版"
 
 -- Without Polestar there is nothing to enhance: say so once, and point the
 -- player at the official addon and its full Chinese pack instead of staying
@@ -40,7 +35,7 @@ if type(Polestar) ~= "table" then
 	hint:RegisterEvent("PLAYER_LOGIN")
 	hint:SetScript("OnEvent", function(self)
 		self:UnregisterAllEvents()
-		printLine("未检测到 Polestar。请安装 Polestar 官方版和官方中文包 Polestar_zhCN；本插件只补充官方未覆盖的译文。")
+		printLine(MIGRATE)
 	end)
 	return
 end
@@ -227,11 +222,9 @@ report:SetScript("OnEvent", function(self)
 	for _ in pairs(E.guides) do n = n + 1 end
 	if E.wired then
 		print(("|cff33ff99Polestar 简体中文增强|r：%d 个指南译文，重译 %d 篇指南。"):format(n, E.refreshed or 0))
-		-- Recommend the official stack when its Chinese pack is absent: ours is
-		-- a supplement and only keeps up with releases after each sync.
-		if addonLoaded("Polestar_zhCN") == false then
-			printLine("未检测到官方中文包 Polestar_zhCN，建议安装 Polestar 官方版与中文包，以获得最新完整译文。")
-		end
+		-- Migration notice: this addon fills gaps only; say so on every load so
+		-- players move to the official full Chinese edition.
+		printLine(MIGRATE)
 	else
 		print(("|cffff5555Polestar 简体中文增强|r：译文未注册（Polestar.RegisterGuideTexts 不可用）。"))
 	end
